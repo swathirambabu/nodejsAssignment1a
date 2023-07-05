@@ -351,7 +351,7 @@ app.put("/todos/:todoId/", async (request, response) => {
 
 //api 6
 
-app.delete("/todo/:todoId/", async (request, response) => {
+app.delete("/todos/:todoId/", async (request, response) => {
   const { todoId } = request.params;
   const deleteTodoQuery = `delete from todo where id=${todoId};`;
   await db.run(deleteTodoQuery);
