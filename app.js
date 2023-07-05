@@ -101,7 +101,7 @@ app.get("/todos/", async (request, response) => {
       }
       break;
     //has category and status scenario 5
-    case CategoryAndStatusProperties(request.query):
+    case hasCategoryAndStatusProperties(request.query):
       if (
         category === "WORK" ||
         category === "HOME" ||
