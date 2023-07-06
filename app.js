@@ -165,7 +165,7 @@ app.get("/todos/", async (request, response) => {
 
     case hasStatusProperty(request.query):
       if (status === "TO DO" || status === "IN PROGRESS" || status === "DONE") {
-        getTodosQuery = `select * from todo  where  status='${status}'  ;`;
+        getTodosQuery = `select * from todo  where  status='${status}';`;
         data = await db.all(getTodosQuery);
         response.send(data.map((eachItem) => outPutResult(eachItem)));
       } else {
@@ -175,10 +175,11 @@ app.get("/todos/", async (request, response) => {
       break;
     //scenario 4
     case hasSearchProperty(request.query):
-      getTodosQuery = `select *from todo  where 
+      getTodosQuery = `select * from todo  where 
             todo like '%${search_q}%';`;
       data = await db.all(getTodosQuery);
       response.send(data.map((eachItem) => outPutResult(eachItem)));
+      break;
 
     //scenario6
     case hasCategoryProperty(request.query):
@@ -194,6 +195,7 @@ app.get("/todos/", async (request, response) => {
         response.status(400);
         response.send("Invalid Todo Category");
       }
+      break;
 
     //default all todo
 
